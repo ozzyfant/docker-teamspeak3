@@ -8,13 +8,13 @@ Usage
 
 To simply use the latest stable version, run
 
-    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 --name=ts3-server aheil/teamspeak3-server
+    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 40044:40044 --name=ts3-server aheil/teamspeak3-server
 
 where the default server ports will be exposed on your host machine. If you want to serve up multiple TeamSpeak3 servers or just use an alternate port, change the host-side port mapping such as
 
-    docker run -d -p 9988:9987/udp -p 10012:10011 -p 30034:30033 ...
+    docker run -d -p 9988:9987/udp -p 10012:10011 -p 30034:30033 -p 40044:40044 ...
 
-will serve your TeamSpeak3 server on your host's port 9988/udp, 10011/tcp, 30033/tcp sind the `-p` syntax is `host-port:container-port`.
+will serve your TeamSpeak3 server on your host's port 9988/udp, 10011/tcp, 30033/tcp and TSDNS on 40044/tcp. The `-p` syntax is `host-port:container-port`.
 
 Speaking of multiple servers, it's handy to give your containers ecplicit names using `--name` as seen above.
 
@@ -24,7 +24,7 @@ If there is no `ts3server.ini` present in the data directory, the server will be
 
 If you are starting the server for the first time, you need the Admin-Token:
 
-    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 --name=ts3-server aheil/teamspeak3-server
+    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 40044:40044 --name=ts3-server aheil/teamspeak3-server
     docker logs -f ts3-server
 
 There are two important sections in the logfiles:
@@ -55,7 +55,7 @@ and:
 In order to readily access the TeamSpeak3 data, use the `-v` argument to map a directory on your host machine to the container's `/data` directory, such as:
 
     mkdir -p /path/on/host
-    chown 1000:1000 /path/on/host
+    chown 9987:9987 /path/on/host
     docker run -d -v /path/on/host:/data ... --name=ts3-server ...
 
 When attached in this way you can stop the server (`docker stop ts3-server`), edit the configuration under your attached `/path/on/host` and start the server again with `docker start ts3-server` to pick up the new configuration.

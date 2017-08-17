@@ -25,17 +25,9 @@ if [ "$download" -eq 1 ]; then
   wget -q http://dl.4players.de/ts/releases/${TS_VERSION}/${TARFILE} \
   && tar -j -x -f ${TARFILE} --strip-components=1 \
   && rm -f ${TARFILE} \
-  && echo $TS_VERSION >version
+  && echo $TS_VERSION >version \
+  && chown -R teamspeak3:teamspeak3 /data
 fi
 
-export LD_LIBRARY_PATH=/data
-
-TS3ARGS=""
-if [ -e /data/ts3server.ini ]; then
-  TS3ARGS="inifile=/data/ts3server.ini"
-else
-  TS3ARGS="createinifile=1"
-fi
-
-exec ./ts3server $TS3ARGS
-
+# supervisord handles running and probing TS3 server and TSDNS
+exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
