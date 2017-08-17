@@ -60,7 +60,7 @@ In order to readily access the TeamSpeak3 data, use the `-v` argument to map a d
 
 When attached in this way you can stop the server (`docker stop ts3-server`), edit the configuration under your attached `/path/on/host` and start the server again with `docker start ts3-server` to pick up the new configuration.
 
-**NOTE**: The files in the attached directory will be owned by the host user with UID of 1000. Be sure to create that user (such as `adduser --uid 1000 ...`) if you don't already have one.
+**NOTE**: The files in the attached directory will be owned by the host user with UID of 9987. Be sure to create that user (such as `adduser --uid 9987 ...`) if you don't already have one.
 
 Versions
 --------
