@@ -21,7 +21,7 @@ COPY start-teamspeak3.sh /start-teamspeak3
 COPY run-teamspeak3.sh /run-teamspeak3
 COPY run-tsdns.sh /run-tsdns
 
-EXPOSE 9987/udp 10011 30033 40044
+EXPOSE 9987/udp 10011 30033 41144
 
 USER root
 VOLUME /data

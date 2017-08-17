@@ -8,13 +8,13 @@ Usage
 
 To simply use the latest stable version, run
 
-    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 40044:40044 --name=ts3-server ozzyfant/teamspeak3-server
+    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 41144:41144 --name=ts3-server ozzyfant/teamspeak3-server
 
 where the default server ports will be exposed on your host machine. If you want to serve up multiple TeamSpeak3 servers or just use an alternate port, change the host-side port mapping such as
 
-    docker run -d -p 9988:9987/udp -p 10012:10011 -p 30034:30033 -p 40044:40044 ...
+    docker run -d -p 9988:9987/udp -p 10012:10011 -p 30034:30033 -p 41144:41144 ...
 
-will serve your TeamSpeak3 server on your host's port 9988/udp, 10011/tcp, 30033/tcp and TSDNS on 40044/tcp. The `-p` syntax is `host-port:container-port`.
+will serve your TeamSpeak3 server on your host's port 9988/udp, 10011/tcp, 30033/tcp and TSDNS on 41144/tcp. The `-p` syntax is `host-port:container-port`.
 
 Speaking of multiple servers, it's handy to give your containers ecplicit names using `--name` as seen above.
 
@@ -24,7 +24,7 @@ If there is no `ts3server.ini` present in the data directory, the server will be
 
 If you are starting the server for the first time, you need the Admin-Token:
 
-    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 40044:40044 --name=ts3-server ozzyfant/teamspeak3-server
+    docker run -d -p 9987:9987/udp -p 10011:10011 -p 30033:30033 -p 41144:41144 --name=ts3-server ozzyfant/teamspeak3-server
     docker logs -f ts3-server
 
 There are two important sections in the logfiles:
